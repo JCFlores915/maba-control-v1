@@ -67,7 +67,7 @@ const LayoutApp = () => {
           </Button>
         </Header>
         <Content
-          style={{ margin: "24px 16px", padding: 24, background: "#fff" }}
+          style={{ margin: "24px 16px", padding: 24 }}
         >
           <Outlet />
         </Content>
