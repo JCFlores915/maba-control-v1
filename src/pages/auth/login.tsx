@@ -1,40 +1,46 @@
-import { Link } from 'react-router-dom';
-
-// material-ui
-import { Grid, Stack, Typography } from '@mui/material';
-
-// project import
-import useAuth from 'hooks/useAuth';
-import AuthWrapper from 'sections/auth/AuthWrapper';
-import AuthLogin from 'sections/auth/auth-forms/AuthLogin';
-
-// ================================|| LOGIN ||================================ //
+import { useState } from 'react';
+import { Button, Input, Card, message } from 'antd';
+import { useAuth } from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const { isLoggedIn } = useAuth();
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      await login(email, password);
+      navigate('/');
+    } catch (err) {
+      message.error('Credenciales incorrectas');
+        console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <AuthWrapper>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
-            <Typography variant="h3">Login</Typography>
-            <Typography
-              component={Link}
-              to={isLoggedIn ? '/auth/register' : '/register'}
-              variant="body1"
-              sx={{ textDecoration: 'none' }}
-              color="primary"
-            >
-              Don&apos;t have an account?
-            </Typography>
-          </Stack>
-        </Grid>
-        <Grid item xs={12}>
-          <AuthLogin />
-        </Grid>
-      </Grid>
-    </AuthWrapper>
+    <Card title="Iniciar Sesión" style={{ maxWidth: 400, margin: 'auto' }}>
+      <Input
+        placeholder="Correo electrónico"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        style={{ marginBottom: 12 }}
+      />
+      <Input.Password
+        placeholder="Contraseña"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        style={{ marginBottom: 12 }}
+      />
+      <Button type="primary" block loading={loading} onClick={handleSubmit}>
+        Entrar
+      </Button>
+    </Card>
   );
 };
 
