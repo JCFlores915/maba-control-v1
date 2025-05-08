@@ -1,7 +1,6 @@
+import { createContext, useContext, useState, useLayoutEffect } from 'react';
 
-import { createContext, useContext, useState, useEffect } from "react";
-
-type Theme = "light" | "dark";
+type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -11,20 +10,19 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(() => {
+    const stored = localStorage.getItem('theme');
+    return stored === 'dark' || stored === 'light' ? stored : 'light';
+  });
 
-  useEffect(() => {
-    const stored = localStorage.getItem("theme") as Theme;
-    if (stored) setTheme(stored);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    document.body.setAttribute("data-theme", theme);
+  // useLayoutEffect para que se ejecute antes del paint
+  useLayoutEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
 
   return (
@@ -36,6 +34,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (!context) throw new Error("useTheme must be used within ThemeProvider");
+  if (!context) throw new Error('useTheme must be used within ThemeProvider');
   return context;
 };

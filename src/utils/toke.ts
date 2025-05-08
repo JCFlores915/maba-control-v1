@@ -10,4 +10,13 @@ export const getToken = () => {
 
 export const removeToken = () => {
   localStorage.removeItem(TOKEN_KEY);
+  window.location.href = '/login'; 
 };
+
+
+export const isTokenValid = (token: string | null) => {
+  // Aquí puedes implementar la lógica para validar el token
+  // Por ejemplo, decodificar el token y verificar su fecha de expiración
+  // de momento solo validar que exista 
+  return !!token;
+}

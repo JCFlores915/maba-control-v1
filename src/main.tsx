@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
-import { router } from './router';
 import 'antd/dist/reset.css';
 import './index.css';
+import AppTheme from './App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <BrowserRouter>
+          <AppTheme />
+        </BrowserRouter>
       </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>
