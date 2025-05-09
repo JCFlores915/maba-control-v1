@@ -6,3 +6,45 @@ body[data-theme='light'] {
   background-color: white;
   color: black;
 }
+/* quiro quitarle a todas las h quiero quitarle el margin */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 !important;
+}
+
+:root {
+  --primary-color: #531C6A;
+}
+
+.ant-layout-sider,
+.ant-layout-header,
+.ant-menu{
+  background-color: var(--primary-color) !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #6c2996 !important;
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+.ant-menu-submenu:hover {
+  background-color: #6c2996 !important;
+ 
+}
+.ant-menu-submenu-title {
+  color: #fff !important;
+}
+
+.ant-menu-item:hover {
+  color: #fff !important;
+  background-color: #6c2996 !important;
+}
+
+.ant-menu-item{
+  color: #fff !important;
+}
+
+.ant-layout-header{
+  padding: 0 16px !important;
+}

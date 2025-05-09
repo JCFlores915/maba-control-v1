@@ -1,27 +1,62 @@
-import { Layout, Menu, Button } from "antd";
+import { useState } from "react";
+import { Layout, Button, Dropdown } from "antd";
 import {
-  SettingOutlined,
-  DashboardOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  DownOutlined,
+  BankOutlined,
+  UserOutlined,
+  MailOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import { useNavigate, Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { useTheme } from "../context/ThemeContext";
 import logo from "../assets/logo.png"; // Adjust the path as necessary
-
+import ThemeToggle from "./ThemeToggle";
+import type { MenuProps } from "antd";
+import SidebarMenu from "./SidebarMenu";
 const { Header, Content, Sider } = Layout;
 
 const LayoutApp = () => {
+  const [collapsed, setCollapsed] = useState(true);
   const { logout } = useAuth();
-  const { toggleTheme, theme } = useTheme();
-  const navigate = useNavigate();
-  const location = useLocation();
 
-  const selectedKey = location.pathname === "/settings" ? "2" : "1";
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: (
+        <span>
+          <span>
+            <UserOutlined style={{ marginRight: 4 }} />
+            Juan Flores
+          </span>
+          <small style={{ display: "block", color: "#888" }}>
+            <MailOutlined style={{ marginRight: 4 }} />
+            juanflores@gmail.com
+          </small>
+
+          <small>
+            <BankOutlined style={{ marginRight: 4 }} />
+            Sucursal Granada
+          </small>
+        </span>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <a onClick={logout} style={{ color: "red" }}>
+          <LogoutOutlined style={{ marginRight: 4 }} />
+          Salir
+        </a>
+      ),
+    },
+  ];
+  // const selectedKey = location.pathname === "/settings" ? "2" : "1";
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider collapsible>
+      <Sider collapsible trigger={null} collapsed={collapsed}>
         <div
           className="logo"
           style={{
@@ -33,42 +68,67 @@ const LayoutApp = () => {
         >
           <img src={logo} alt="logo" style={{ height: 40 }} />
         </div>
-        <Menu theme="dark" mode="inline" selectedKeys={[selectedKey]}>
-          <Menu.Item
-            key="1"
-            icon={<DashboardOutlined />}
-            onClick={() => navigate("/")}
-          >
-            Dashboard
-          </Menu.Item>
-          <Menu.Item
-            key="2"
-            icon={<SettingOutlined />}
-            onClick={() => navigate("/settings")}
-          >
-            Configuración
-          </Menu.Item>
-        </Menu>
+        <SidebarMenu />
       </Sider>
       <Layout>
         <Header
           style={{
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
             alignItems: "center",
             gap: 12,
           }}
         >
-          <Button onClick={toggleTheme}>
-            Modo {theme === "light" ? "Oscuro" : "Claro"}
-          </Button>
-          <Button danger icon={<LogoutOutlined />} onClick={logout}>
-            Salir
-          </Button>
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: "16px",
+              width: 64,
+              height: 64,
+              color: "#fff",
+            }}
+          />
+
+          <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+            <ThemeToggle />
+
+            <Dropdown
+              menu={{ items }}
+              trigger={["click"]}
+              placement="bottomRight"
+            >
+              <Button
+                icon={
+                  <div
+                    style={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: "50%",
+                      border: "1px solid #fff",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      color: "#fff",
+                      fontSize: 12,
+                    }}
+                  >
+                    <span style={{ fontSize: 12 }}>JC</span>
+                  </div>
+                }
+                size="large"
+                type="text"
+                style={{
+                  color: "#fff",
+                }}
+              >
+                <DownOutlined style={{ color: "#fff" }} />
+              </Button>
+            </Dropdown>
+          </div>
         </Header>
-        <Content
-          style={{ margin: "24px 16px", padding: 24 }}
-        >
+        <Content style={{ margin: "24px 16px", padding: 4 }}>
           <Outlet />
         </Content>
       </Layout>
