@@ -19,6 +19,7 @@ const ContextBox = ({ children }: ContextBoxProps) => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
       }}
     >
       {children}

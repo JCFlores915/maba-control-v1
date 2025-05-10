@@ -27,12 +27,12 @@ export const MenuItems: CustomMenuItem[] = [
     children: [
       {
         key: "2-1",
-        label: "Subfolder 1",
+        label: "Archivos Clientes",
         path: "/archivos/subfolder1",
       },
       {
         key: "2-2",
-        label: "Subfolder 2",
+        label: "Archivos Empleados",
         path: "/archivos/subfolder2",
       },
     ],

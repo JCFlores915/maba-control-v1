@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Login from "../pages/Auth/Login";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import RecoverPassword from "../pages/Auth/RecoverPassword";
-import NotFound from "../pages/NotFound/NotFound";
+import NotFound from "../pages/NotFound/NotFoundPage";
 import { PublicRoute } from "../guards/AuthGuards";
 
 const AthRoutes = 

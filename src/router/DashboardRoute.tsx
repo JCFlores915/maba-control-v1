@@ -1,6 +1,6 @@
-import Dashboard from "../pages/Dashboard/Dashboard";
+import DashboardPage from "../pages/Dashboard/DashboardPage";
 
-import Settings from "../pages/Settings/Settings";
+import SettingsPage from "../pages/Settings/SettingsPage";
 import LayoutApp from "../components/LayoutApp";
 import { ProtectedRoute } from "../guards/AuthGuards";
 
@@ -12,8 +12,8 @@ const DashboardRouters = {
     </ProtectedRoute>
   ),
   children: [
-    { index: true, element: <Dashboard /> },
-    { path: "settings", element: <Settings /> },
+    { index: true, element: <DashboardPage /> },
+    { path: "settings", element: <SettingsPage /> },
   ],
 };
 

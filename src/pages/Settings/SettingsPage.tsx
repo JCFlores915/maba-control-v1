@@ -3,7 +3,7 @@ import { useTheme } from "../../context/ThemeContext";
 import ContextBox from "../../components/ContextBox";
 import ThemeToggle from "../../components/ThemeToggle";
 
-const Settings = () => {
+const SettingsPage = () => {
   const { theme } = useTheme();
 
   return (
@@ -20,4 +20,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default SettingsPage;

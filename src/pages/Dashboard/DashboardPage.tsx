@@ -1,7 +1,7 @@
 import { Card } from "antd";
 import ContextBox from "../../components/ContextBox";
 
-const Dashboard = () => {
+const DashboardPage = () => {
   return (
     <ContextBox>
       {" "}
@@ -22,4 +22,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardPage;

@@ -43,6 +43,7 @@ const Login = () => {
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: "transparent",
+          
         }}
       >
         <ContextBox>
@@ -57,12 +58,15 @@ const Login = () => {
               width: 100,
               objectFit: "contain",
               borderRadius: "5%",
-              boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
             }}
           />
           <Card
             title="INICIAR SESIÓN"
-            style={{ maxWidth: 400, margin: "auto", textAlign: "center" }}
+            style={{
+              maxWidth: 400,
+              margin: "auto",
+              textAlign: "center",
+            }}
           >
             <Input
               placeholder="Correo electrónico"

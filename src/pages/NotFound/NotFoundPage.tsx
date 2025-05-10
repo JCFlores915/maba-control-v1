@@ -1,6 +1,6 @@
-const NotFound = () => {
+const NotFoundPage = () => {
     return <h2>404 - Página no encontrada</h2>;
   };
   
-  export default NotFound;
+  export default NotFoundPage;
   
