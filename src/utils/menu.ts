@@ -28,12 +28,12 @@ export const MenuItems: CustomMenuItem[] = [
       {
         key: "2-1",
         label: "Archivos Clientes",
-        path: "/archivos/subfolder1",
+        path: "/files/client",
       },
       {
         key: "2-2",
         label: "Archivos Empleados",
-        path: "/archivos/subfolder2",
+        path: "/files/employee",
       },
     ],
   },

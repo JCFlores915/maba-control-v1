@@ -1,5 +1,5 @@
 
-const EmployeeFiles = () => {
+const EmployeeFilesCreatePage = () => {
     return (
         <div>
             <h1>Employee Files</h1>
@@ -8,4 +8,4 @@ const EmployeeFiles = () => {
     );
 };
 
-export default EmployeeFiles;
+export default EmployeeFilesCreatePage;

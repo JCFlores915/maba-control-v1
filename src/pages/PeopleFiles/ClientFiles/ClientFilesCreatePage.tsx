@@ -1,5 +1,5 @@
 
-const ClientFiles = () => {
+const ClientFilesCreatePage = () => {
     return (
         <div>
             <h1>Client Files</h1>
@@ -8,4 +8,4 @@ const ClientFiles = () => {
     );
 };
 
-export default ClientFiles;
+export default ClientFilesCreatePage;
