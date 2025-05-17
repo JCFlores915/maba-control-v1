@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 import { Layout, Button, Dropdown } from 'antd';
 import {
   MenuFoldOutlined,
@@ -52,14 +52,6 @@ const LayoutApp = () => {
       ),
     },
   ];
-  const headerRef = useRef<HTMLDivElement>(null);
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  useLayoutEffect(() => {
-    if (headerRef.current) {
-      setHeaderHeight(headerRef.current.offsetHeight);
-    }
-  }, []);
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -135,8 +127,7 @@ const LayoutApp = () => {
           style={{
             margin: '24px 16px',
             padding: 4,
-            height: `calc(100vh - ${headerHeight}px)`,
-            overflow: 'auto',
+            overflowY: 'auto',
           }}
         >
           <Outlet />

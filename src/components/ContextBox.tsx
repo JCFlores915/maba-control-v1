@@ -18,7 +18,8 @@ const ContextBox = ({ children }: ContextBoxProps) => {
         borderRadius: borderRadiusLG,
         display: 'flex',
         flexDirection: 'column',
-        // height: "100%",
+        height: '100%',
+        boxSizing: 'border-box',
         boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
       }}
     >

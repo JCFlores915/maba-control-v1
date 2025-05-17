@@ -28,7 +28,7 @@ const SidebarMenu: React.FC = () => {
     <Menu
       mode="inline"
       items={renderMenuItems(MenuItems)}
-      style={{ height: '100%', borderRight: 0 }}
+      // style={{ height: '100%', borderRight: 0 }}
     />
   );
 };
