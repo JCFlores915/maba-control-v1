@@ -1,28 +1,29 @@
-import { theme } from 'antd';
+// import { theme } from 'antd';
 
 interface ContextBoxProps {
   children: React.ReactNode;
+  title?: string;
 }
 
-const ContextBox = ({ children }: ContextBoxProps) => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+const ContextBox = ({ children, title }: ContextBoxProps) => {
+  // const {
+  //   token: { colorBgContainer },
+  // } = theme.useToken();
 
   return (
     <div
-      style={{
-        background: colorBgContainer,
-        minHeight: 280,
-        padding: 24,
-        borderRadius: borderRadiusLG,
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        boxSizing: 'border-box',
-        boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
-      }}
+      className="min-h-[280px] p-6 rounded-lg flex flex-col h-full"
+      style={
+        {
+          // background: colorBgContainer,
+        }
+      }
     >
+      {title && (
+        <div className="mb-4 border-b border-b-gray-300 pb-4">
+          <h2 className="text-2xl font-bold mb-4">{title}</h2>
+        </div>
+      )}
       {children}
     </div>
   );

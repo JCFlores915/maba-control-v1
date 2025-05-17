@@ -1,9 +1,13 @@
+import ContextBox from '../../../components/ContextBox';
+
 const ClientFilesListPage = () => {
   return (
-    <div>
-      <h1>Client Files List</h1>
-      {/* Add your components or logic here */}
-    </div>
+    <ContextBox title="Clientes">
+      <h2 className="text-2xl font-bold mb-4">Lista de archivos</h2>
+      <p>Esta es una simulación de un panel de administración.</p>
+      <p>Utiliza el menú lateral para navegar entre las diferentes secciones.</p>
+      <p>¡Disfruta!</p>
+    </ContextBox>
   );
 };
 

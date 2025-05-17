@@ -115,7 +115,7 @@ const LayoutApp = () => {
             </Dropdown>
           </div>
         </Header>
-        <Content className="my-6 mx-6 p-1 overflow-y-auto">
+        <Content className=" mx-6  overflow-y-auto">
           <Outlet />
         </Content>
       </Layout>
