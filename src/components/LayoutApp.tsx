@@ -54,18 +54,10 @@ const LayoutApp = () => {
   ];
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout className="h-screen">
       <Sider collapsible trigger={null} collapsed={collapsed}>
-        <div
-          className="logo"
-          style={{
-            height: 64,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <img src={logo} alt="logo" style={{ height: 40 }} />
+        <div className="h-16 flex items-center justify-center">
+          <img src={logo} alt="logo" className="h-10" />
         </div>
         <SidebarMenu />
       </Sider>
@@ -123,13 +115,7 @@ const LayoutApp = () => {
             </Dropdown>
           </div>
         </Header>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 4,
-            overflowY: 'auto',
-          }}
-        >
+        <Content className="my-6 mx-6 p-1 overflow-y-auto">
           <Outlet />
         </Content>
       </Layout>
