@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Layout, Button, Dropdown } from "antd";
+import { useRef, useLayoutEffect, useState } from 'react';
+import { Layout, Button, Dropdown } from 'antd';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -8,29 +8,29 @@ import {
   UserOutlined,
   MailOutlined,
   LogoutOutlined,
-} from "@ant-design/icons";
-import { Outlet } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
-import logo from "../assets/logo.png"; // Adjust the path as necessary
-import ThemeToggle from "./ThemeToggle";
-import type { MenuProps } from "antd";
-import SidebarMenu from "./SidebarMenu";
+} from '@ant-design/icons';
+import { Outlet } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import logo from '../assets/logo.png'; // Adjust the path as necessary
+import ThemeToggle from './ThemeToggle';
+import type { MenuProps } from 'antd';
+import SidebarMenu from './SidebarMenu';
 const { Header, Content, Sider } = Layout;
 
 const LayoutApp = () => {
   const [collapsed, setCollapsed] = useState(true);
   const { logout } = useAuth();
 
-  const items: MenuProps["items"] = [
+  const items: MenuProps['items'] = [
     {
-      key: "1",
+      key: '1',
       label: (
         <span>
           <span>
             <UserOutlined style={{ marginRight: 4 }} />
             Juan Flores
           </span>
-          <small style={{ display: "block", color: "#888" }}>
+          <small style={{ display: 'block', color: '#888' }}>
             <MailOutlined style={{ marginRight: 4 }} />
             juanflores@gmail.com
           </small>
@@ -43,27 +43,34 @@ const LayoutApp = () => {
       ),
     },
     {
-      key: "3",
+      key: '3',
       label: (
-        <a onClick={logout} style={{ color: "red" }}>
+        <a onClick={logout} style={{ color: 'red' }}>
           <LogoutOutlined style={{ marginRight: 4 }} />
           Salir
         </a>
       ),
     },
   ];
-  // const selectedKey = location.pathname === "/settings" ? "2" : "1";
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, []);
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible trigger={null} collapsed={collapsed}>
         <div
           className="logo"
           style={{
             height: 64,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <img src={logo} alt="logo" style={{ height: 40 }} />
@@ -73,9 +80,9 @@ const LayoutApp = () => {
       <Layout>
         <Header
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
             gap: 12,
           }}
         >
@@ -84,33 +91,29 @@ const LayoutApp = () => {
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
             style={{
-              fontSize: "16px",
+              fontSize: '16px',
               width: 64,
               height: 64,
-              color: "#fff",
+              color: '#fff',
             }}
           />
 
-          <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
             <ThemeToggle />
 
-            <Dropdown
-              menu={{ items }}
-              trigger={["click"]}
-              placement="bottomRight"
-            >
+            <Dropdown menu={{ items }} trigger={['click']} placement="bottomRight">
               <Button
                 icon={
                   <div
                     style={{
                       width: 32,
                       height: 32,
-                      borderRadius: "50%",
-                      border: "1px solid #fff",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      color: "#fff",
+                      borderRadius: '50%',
+                      border: '1px solid #fff',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      color: '#fff',
                       fontSize: 12,
                     }}
                   >
@@ -120,15 +123,22 @@ const LayoutApp = () => {
                 size="large"
                 type="text"
                 style={{
-                  color: "#fff",
+                  color: '#fff',
                 }}
               >
-                <DownOutlined style={{ color: "#fff" }} />
+                <DownOutlined style={{ color: '#fff' }} />
               </Button>
             </Dropdown>
           </div>
         </Header>
-        <Content style={{ margin: "24px 16px", padding: 4 }}>
+        <Content
+          style={{
+            margin: '24px 16px',
+            padding: 4,
+            height: `calc(100vh - ${headerHeight}px)`,
+            overflow: 'auto',
+          }}
+        >
           <Outlet />
         </Content>
       </Layout>

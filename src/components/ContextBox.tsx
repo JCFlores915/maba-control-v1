@@ -1,4 +1,4 @@
-import { theme } from "antd";
+import { theme } from 'antd';
 
 interface ContextBoxProps {
   children: React.ReactNode;
@@ -16,10 +16,10 @@ const ContextBox = ({ children }: ContextBoxProps) => {
         minHeight: 280,
         padding: 24,
         borderRadius: borderRadiusLG,
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
+        display: 'flex',
+        flexDirection: 'column',
+        // height: "100%",
+        boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)',
       }}
     >
       {children}
