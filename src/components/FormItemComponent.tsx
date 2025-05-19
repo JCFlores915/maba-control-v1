@@ -1,6 +1,6 @@
-import { Form, Input, Select, Upload, Button } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { Form, Input, Select } from 'antd';
 import { type Rule } from 'antd/es/form';
+import PDFUploadComponent from './PDFUploadComponent';
 const { Option } = Select;
 
 export type FieldType = 'input' | 'select' | 'upload';
@@ -40,13 +40,7 @@ const FormItemComponent: React.FC<DynamicFormItemProps> = ({ field }) => {
           </Select>
         );
       case 'upload':
-        return (
-          <Upload accept={accept} maxCount={1} beforeUpload={() => false} showUploadList={false}>
-            <Button icon={<UploadOutlined />} block>
-              {placeholder || 'Subir archivo'}
-            </Button>
-          </Upload>
-        );
+        return <PDFUploadComponent accept={accept} placeholder={placeholder} name={name} />;
       default:
         return null;
     }

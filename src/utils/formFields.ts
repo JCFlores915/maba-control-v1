@@ -35,37 +35,96 @@ export const formFieldsClient: DynamicFormItemProps['field'][] = [
     placeholder: 'Dirección',
     rules: [{ required: true, message: 'Por favor ingresa la dirección' }],
   },
-  { label: 'Cedula', name: 'idCard', type: 'input', placeholder: 'Cedula' },
+  {
+    label: 'Cedula',
+    name: 'idCard',
+    type: 'input',
+    placeholder: 'Cedula',
+    rules: [{ required: true, message: 'Por favor ingresa la cedula' }],
+  },
   {
     label: 'Geolocalización',
     name: 'geolocation',
     type: 'input',
     placeholder: 'Longitud, Latitud (######,-######)',
+    rules: [
+      {
+        required: true,
+        message: 'Por favor ingresa la geolocalización',
+      },
+      {
+        pattern: /^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/,
+        message: 'Formato inválido. Debe ser ######,-######',
+      },
+    ],
   },
-  { label: 'Email', name: 'email', type: 'input', placeholder: 'Email' },
+  {
+    label: 'Email',
+    name: 'email',
+    type: 'input',
+    placeholder: 'Email',
+    rules: [
+      {
+        required: true,
+        message: 'Por favor ingresa el email',
+      },
+      {
+        type: 'email',
+        message: 'El formato del email es inválido',
+      },
+    ],
+  },
   {
     label: 'Genero',
     name: 'genero',
     type: 'select',
     placeholder: 'Genero',
+    rules: [{ required: true, message: 'Por favor selecciona el genero' }],
     options: [
       { label: 'Masculino', value: '1' },
       { label: 'Femenino', value: '2' },
     ],
   },
-  { label: 'Celular', name: 'cellphone', type: 'input', placeholder: 'Celular' },
+  {
+    label: 'Celular',
+    name: 'cellphone',
+    type: 'input',
+    placeholder: 'Celular',
+    rules: [
+      {
+        required: true,
+        message: 'Por favor ingresa el celular',
+      },
+    ],
+  },
   {
     label: 'Operadora',
     name: 'operadora',
     type: 'select',
     placeholder: 'Operadora',
+    rules: [{ required: true, message: 'Por favor selecciona la operadora' }],
     options: [
       { label: 'Claro', value: '1' },
       { label: 'Movistar', value: '2' },
       { label: 'Tigo', value: '3' },
     ],
   },
-  { label: 'Subir archivo', name: 'file', type: 'upload', accept: '.pdf,.doc,.docx' },
+  {
+    label: 'Subir archivo cedula',
+    name: 'file',
+    type: 'upload',
+    accept: '.pdf',
+    placeholder: 'Subir cedula en PDF',
+    // rules: [{ required: true, message: 'Por favor sube un archivo' }],
+  },
+  {
+    label: 'Subir archivo beneficario',
+    name: 'fileBeneficiary',
+    type: 'upload',
+    accept: '.pdf',
+    placeholder: 'Subir cedula en PDF',
+    // rules: [{ required: true, message: 'Por favor sube un archivo' }],
+  },
 ];
 
 export const formFieldsBeneficiary1: DynamicFormItemProps['field'][] = [
@@ -134,7 +193,7 @@ export const formFieldsBeneficiary1: DynamicFormItemProps['field'][] = [
       { label: 'Otro', value: 'Otro' },
     ],
   },
-  { label: 'Subir archivo cedula', name: 'file', type: 'upload', accept: '.pdf,.doc,.docx' },
+  { label: 'Subir archivo cedula', name: 'file', type: 'upload', accept: '.pdf' },
 ];
 
 export const formFieldsBeneficiary2: DynamicFormItemProps['field'][] = [
@@ -202,5 +261,5 @@ export const formFieldsBeneficiary2: DynamicFormItemProps['field'][] = [
       { label: 'Otro', value: 'Otro' },
     ],
   },
-  { label: 'Subir archivo cedula', name: 'file', type: 'upload', accept: '.pdf,.doc,.docx' },
+  { label: 'Subir archivo cedula', name: 'file', type: 'upload', accept: '.pdf' },
 ];
